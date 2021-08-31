@@ -1,6 +1,8 @@
 const express = require('express');
 const axios = require('axios');
-require('dotenv').config()
+const { DateTime } = require("luxon");
+require('dotenv').config();
+const createHtml = require('../public/javascripts/createBaseHtml');
 
 const router = express.Router();
 
@@ -21,20 +23,23 @@ router.get('/:symbol', function(req, res, next) {
       return symbols
     })
     .then((symbols) => {
-      res.writeHead(200, {'content-type': 'text/html'});
       let promises = [];
       for (let i = 0; i < symbols.length; i++) {
         const symbol = symbols[i];
         priceUrl = priceApiPath(symbol);
         promises.push(axios.get(priceUrl));
       }
-      return Promise.all(promises)
+      const data = Promise.all(promises);
+      return data
     })
     .then((responses) => {
       data.prices = responses.map(response => response.data.c);
+      res.writeHead(200, {'content-type': 'text/html'});
+      res.write(createHtml());
       for (let i = 0; i < data.symbols.length; i++) {
         res.write(`${data.symbols[i]} - $${data.prices[i]}<br>`)
       }
+      res.write(`</div></main></body></html>`)
       res.end();
     })
     .catch((e) => {
@@ -62,9 +67,9 @@ function newsApiPath(symbol) {
   //Retrieve API key from .env file and return complete URL
   const token = process.env.FINNHUB_TOKEN;
   //TODO come back and fix these dates lol
-  const toDate = new Date();
-  const fromDate = new Date(toDate.getDate() - 7);
-  const url = `https://finnhub.io/api/v1/company-news?symbol=${symbol}&from=2021-08-21&to=2021-08-28&token=${token}`;
+  const toDate = DateTime.now().toISODate();
+  const fromDate = DateTime.now().minus({days: 7}).toISODate();
+  const url = `https://finnhub.io/api/v1/company-news?symbol=${symbol}&from=${fromDate}&to=${toDate}&token=${token}`;
   return url;
 }
 
