@@ -26,18 +26,33 @@ router.get('/:symbol', function(req, res, next) {
       let promises = [];
       for (let i = 0; i < symbols.length; i++) {
         const symbol = symbols[i];
-        priceUrl = priceApiPath(symbol);
+        const priceUrl = priceApiPath(symbol);
         promises.push(axios.get(priceUrl));
       }
-      const data = Promise.all(promises);
-      return data
+      return Promise.all(promises);
     })
     .then((responses) => {
       data.prices = responses.map(response => response.data.c);
+      let promises = [];
+      for (let i = 0; i < data.symbols.length; i++) {
+        const symbol = data.symbols[i];
+        const newsUrl = newsApiPath(symbol);
+        promises.push(axios.get(newsUrl));
+      }
+      return Promise.all(promises);
+    })
+    .then((responses) => {
+      data.news = responses.map(response => {
+        return response.data.slice(0,5)
+      });
       res.writeHead(200, {'content-type': 'text/html'});
       res.write(createHtml());
       for (let i = 0; i < data.symbols.length; i++) {
-        res.write(`${data.symbols[i]} - $${data.prices[i]}<br>`)
+        res.write(`${data.symbols[i]} - $${data.prices[i]}<br><strong>NEWS</strong><br>`)
+        for (let j = 0; j < data.news[i].length; j++) {
+          res.write(`${data.news[i][j].headline}<br>`)
+        }
+        res.write(`<br><br><br>`);
       }
       res.write(`</div></main></body></html>`)
       res.end();
@@ -46,8 +61,6 @@ router.get('/:symbol', function(req, res, next) {
       console.log(e);
     })
 });
-
-//      res.writeHead(200, {'content-type': 'text/html'});
 
 function peersApiPath(symbol) {
   //Retrieve API key from .env file and return complete URL

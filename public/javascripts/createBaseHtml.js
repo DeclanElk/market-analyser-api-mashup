@@ -41,7 +41,7 @@ function createResponseHtml() {
                 <main role="main" class="container">
 
                     <div class="starter-template">
-                        <h1>MATE</h1>
+                        <h1>ANALYSIS</h1>
                     </div>
 
                     <div> `
