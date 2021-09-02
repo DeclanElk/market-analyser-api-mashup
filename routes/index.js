@@ -1,9 +1,13 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const createHtml = require('../public/javascripts/createBaseHtml');
+const router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.writeHead(200, {'content-type': 'text/html'});
+  res.write(createHtml());
+  res.write(`<br><br><br>`);
+  res.end();
 });
 
 module.exports = router;

@@ -8,13 +8,15 @@ function createResponseHtml() {
                 <meta name="description" content="">
                 <meta name="author" content="">
 
-                <title>Starter Template for Bootstrap</title>
+                <title>Market Analysis</title>
 
                 <!-- Bootstrap core CSS -->
                 <link type="text/css" href="/stylesheets/bootstrap.min.css" rel="stylesheet">
 
                 <!-- Custom styles for this template -->
                 <link type="text/css" href="/stylesheets/starter-template.css" rel="stylesheet">
+            
+                <script src="/javascripts/search.js"></script> 
             </head>
 
             <body>
@@ -31,17 +33,16 @@ function createResponseHtml() {
                         <a class="nav-link" href="../../">Home</a>
                     </li>
                     </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-                </div>
+                    <div id="searchContainer">
+                        <input id="search" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="myFunction()" >Search</button>
+                    </div>
                 </nav>
 
                 <main role="main" class="container">
 
                     <div class="starter-template">
-                        <h1>ANALYSIS</h1>
+                        <h1 id="demo" onclick="myFunction()">Analysis</h1>
                     </div>
 
                     <div> `
