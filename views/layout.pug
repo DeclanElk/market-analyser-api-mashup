@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    title Market Analyser
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='/javascripts/search.js')
+  body
+    header
+      nav
+        div#home-buttons
+          h3 The Market Analyser
+          p
+            a(href="../../") Home
+        form(onsubmit="return false;")
+          input#search(type="text" placeholder="Symbol Search")
+          button(type="submit" onclick="myFunction()") Search
+    block content
