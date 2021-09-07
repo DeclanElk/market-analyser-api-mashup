@@ -1,15 +1,27 @@
 extends layout
 
 block content
-  main
-    #content-container
-      h1 Home - Documentation
-      h3 Welcome to the Market Analyser Cloud Mashup
-      h5 Created by Declan Elkerton and powered by 
-        a(href="https://finnhub.io") finnhub.io
-      p This tool allows users to view the current price of U.S. stocks, as well as relevant news articles related to the company.
-      p In addition to showing the price and recent news articles related to a single company, this tool finds a number of other companies of a similar size and industy and displays their data as well, providing an outlook on the whole market sector.
-      p To get started, simply search for a U.S. traded stock's Ticker symbol in the search bar above.
-      p For example, if we wanted to search for the technology retailer, we could enter their symbol 'AAPL' and hit search to see information about not only their company, but the wider tech sector as a whole.
-      p If needed, you can click the 'Home' button in the top left hand corner to return to this documentation page.
-      p Happy trading!
+    .jumbotron
+        .container
+            h2.display-4 Welcome to the Market Analyser
+            p This tool allows users to view the current share price and relevent news articles of public U.S. companies, as well as that of similar companies in their industry in order to provide an outlook on the whole market sector.
+            p To get started, simply search for a company's ticker symbol (e.g., Apple Incorporated's symbol is 'AAPL') using the search bar below. Once viewing a stock, you can run another search by using the search button in the top right of the page, or return back here using the home button.
+            p Happy Trading! 
+            form.form-inline.my-2.my-lg-0(onsubmit="return false;")
+                input.form-control.mr-sm-2#searchHome(style="width: 85%" type="text" placeholder="Search a stock")
+                button.btn.btn-outline-success.my-2.my-sm-0(type="submit" onclick="homeSearch()") Search
+    .container
+        .row
+            .col-md-4
+                h2 Real-time pricing
+                p 
+                    | Our tool is powered by 
+                    a(href="https://finnhub.io") finnhub.io
+                    | 's market leading stock data platform, meaning pricing data is always up to date. You can invest with confidence knowing that you're viewing the latest market information.
+                p
+                    a.btn.btn-secondary(href="https://finnhub.io/docs/api/quote" role="button") View the API &raquo;
+            .col-md-4
+                h2 Breaking news
+                p Our news API provides company related news articles as they are released from a wide range of general and finance specific news outlets including CNBC and Bloomberg. You can analyse the market and infer trends and sentiment assuredly with our platform.
+                p
+                    a.btn.btn-secondary(href="https://finnhub.io/docs/api/company-news" role="button") View the API &raquo;
