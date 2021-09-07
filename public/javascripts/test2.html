@@ -9,6 +9,8 @@
 
     <title>Jumbotron Template for Bootstrap</title>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -42,33 +44,54 @@
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
         <div class="container">
-          <h2 class="display-4">Welcome to The Market Analyser.</h1>
-          <p>This tool allows users to view the current share price and relevent news articles of public U.S. companies, as well as that of similar companies in their industry in order to provide an outlook on the whole market sector.</p>
-          <p>To get started, simply search for a company's ticker symbol (e.g., Apple Incorporated's symbol is 'AAPL') using the search bar below. Once viewing a stock, you can run another search by using the search button in the top right of the page, or return back here using the home button.</p>
-          <p>Happy trading!</p>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2 input-width-modifier" style="width: 85%" type="text" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
+            <div class="stock-header">
+                <h2 class="display-4 stock-name">AAPL</h2>
+                <div class="price-header">
+                    <h2 class="display-4 stock-price"> $198.09 <span class="badge badge-success stock-change">1.78% &#9650;</span></h2>
+                </div>
+            </div>
+            <h2 class="display-5">Apple Inc.</h2>
+            <div class="fundamentals-container">
+                <p class="first-fundamental">Open: $198</p>
+                <p class="middle-fundamental">Prev. close: $198</p>
+                <p class="middle-fundamental">Daily low: $198</p>
+                <p class="middle-fundamental">Daily high: $198</p>
+                <p class="end-fundamental">Change: $198</p>
+            </div>
+            <hr class="price-seperator">
+        <div class="row">
+            <div class="news-article">
+                <h5>Apple Inc. stock rises Tuesday, outperforms market</h5>
+                <img class="news-img" src="https://static.seekingalpha.com/uploads/2021/3/8/39657916-1615225023344113.png">
+                <p>Intel's latest desktop chip is underwhelming; this has been the story of Intel chips in the past few years and continues to be a headwind for the company.</p>
+                <p><a class="btn btn-secondary" href="https://finnhub.io/api/news?id=c294563de6c2672021f46d6f1cc549ee68afe4edb273230801977c0c3f7b3b85" role="button">View the story &raquo;</a></p>
+            </div>
+            <div class="news-article">
+                <h5>After Hours Most Active for Mar 9, 2021 :  AAPL, DISCK, IRWD, INTC, AMC, CSCO, PM, GE, MU, FTI, SU, TWTR</h5>
+                <img class="news-img" src="https://www.nasdaq.com/sites/acquia.prod/files/2019-05/0902-Q19%20Total%20Markets%20photos%20and%20gif_CC8.jpg?363180172">
+                <p>Intel's latest desktop chip is underwhelming; this has been the story of Intel chips in the past few years and continues to be a headwind for the company.</p>
+                <p><a class="btn btn-secondary" href="https://finnhub.io/api/news?id=4c4979c84000747e2ce54350a521641957f65270e51772669f183c337fa3f54b" role="button">View the story &raquo;</a></p>
+            </div>
+            <div class="news-article">
+                <h5>Biden Reportedly Plans to Name Tech Critic Lina Khan to FTC</h5>
+                <img class="news-img" src="https://images.barrons.com/im-309279/social">
+                <p>Intel's latest desktop chip is underwhelming; this has been the story of Intel chips in the past few years and continues to be a headwind for the company.</p>
+                <p><a class="btn btn-secondary" href="https://finnhub.io/api/news?id=8c87310aacb97436e86ed3edab41781f5f327aea9f6fb5fc615836286d2737e8" role="button">View the story &raquo;</a></p>
+            </div>
+            <div class="news-article">
+                <h5>Intel, Apple Inc. share gains contribute to Dow's nearly 175-point climb</h5>
+                <img class="news-img" src="https://images.mktw.net/im-220108">
+                <p>Intel's latest desktop chip is underwhelming; this has been the story of Intel chips in the past few years and continues to be a headwind for the company.</p>
+                <p><a class="btn btn-secondary" href="https://finnhub.io/api/news?id=2277f3b58a118a5d8a6e1dbaa45cd64c002249df002f3ebfb4da10bc425cf36f" role="button">View the story &raquo;</a></p>
+            </div>
+            <div class="news-article">
+                <h5>I Bought 6 Closed-End Funds A Year Ago - Revisiting Where They've Come, Where They Could Go</h5>
+                <img class="news-img" src="https://static.seekingalpha.com/uploads/2021/2/21/saupload_dcc46f1f18b6c711faa2e09079fa6f39.png">
+                <p>Intel's latest desktop chip is underwhelming; this has been the story of Intel chips in the past few years and continues to be a headwind for the company.</p>
+                <p><a class="btn btn-secondary" href="https://finnhub.io/api/news?id=7d51c2b0cd0318903cf63f5d1ef14d70bed4779e361d2a587efeac1f3ce4af13" role="button">View the story &raquo;</a></p>
+            </div>
         </div>
       </div>
-
-      <div class="container">
-        <!-- Example row of columns -->
-        <div class="row">
-          <div class="col-md-4">
-            <h2>Real-time pricing</h2>
-            <p>Our tool is powered by <a href="https://finnhub.io">finnhub.io</a>'s market leading stock data platform, meaning pricing data is always up to date. You can invest with confidence knowing that you're viewing the latest market information.</p>
-            <p><a class="btn btn-secondary" href="https://finnhub.io/docs/api/quote" role="button">View the API &raquo;</a></p>
-          </div>
-          <div class="col-md-4">
-            <h2>Breaking news</h2>
-            <p>Our news API provides company related news articles as they are released from a wide range of general and finance specific news outlets including CNBC and Bloomberg. You can analyse the market and infer trends and sentiment assuredly with our platform.</p>
-            <p><a class="btn btn-secondary" href="https://finnhub.io/docs/api/company-news" role="button">View the API &raquo;</a></p>
-          </div>
-        </div>
-      </div> <!-- /container -->
-
     </main>
 
     <footer class="container">

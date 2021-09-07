@@ -1,4 +1,73 @@
 /* Move down content because we have a fixed navbar that is 3.5rem tall */
 body {
     padding-top: 3.5rem;
-  }
+}
+
+.stock-header {
+    display: flex;
+    align-items: center;
+}
+
+.price-header {
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.stock-name {
+    flex-grow: 2;
+}
+
+.stock-price, .stock-change {
+    font-size: 3.0rem;
+    margin: 0 12.5px;
+}
+
+.stock-change {
+    font-size: 2.0rem;
+}
+
+.fundamentals-container {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    margin-top: 15px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.first-fundamental {
+    border-right: 1px solid grey;
+    flex-grow: 2;
+    text-align: center;
+}
+
+.middle-fundamental {
+    border-right: 1px solid grey;
+    flex-grow: 2;
+    text-align: center;
+}
+
+.end-fundamental {
+    flex-grow: 2;
+    text-align: center;
+}
+
+.price-seperator {
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+.news-article {
+    max-width: 18%;
+    margin-right: 2%;
+}
+
+.news-img {
+    width: 100%;
+    height: 125px;
+    object-fit: cover;
+    object-position: center;
+    margin: 10px 0;
+}
