@@ -32,7 +32,7 @@ router.get('/:symbol', function(req, res, next) {
       return Promise.all(promises);
     })
     .then((responses) => {
-      data.prices = responses.map(response => response.data.c);
+      data.prices = responses.map(response => response.data);
       let promises = [];
       for (let i = 0; i < data.symbols.length; i++) {
         const symbol = data.symbols[i];
@@ -45,17 +45,19 @@ router.get('/:symbol', function(req, res, next) {
       data.news = responses.map(response => {
         return response.data.slice(0,5)
       });
-      res.writeHead(200, {'content-type': 'text/html'});
-      res.write(createHtml());
-      for (let i = 0; i < data.symbols.length; i++) {
-        res.write(`${data.symbols[i]} - $${data.prices[i]}<br><strong>NEWS</strong><br>`)
-        for (let j = 0; j < data.news[i].length; j++) {
-          res.write(`${data.news[i][j].headline}<br>`)
-        }
-        res.write(`<br><br><br>`);
-      }
-      res.write(`</div></main></body></html>`)
-      res.end();
+      // res.writeHead(200, {'content-type': 'text/html'});
+      // res.write(createHtml());
+      // for (let i = 0; i < data.symbols.length; i++) {
+      //   res.write(`${data.symbols[i]} - $${data.prices[i]}<br><strong>NEWS</strong><br>`)
+      //   for (let j = 0; j < data.news[i].length; j++) {
+      //     res.write(`${data.news[i][j].headline}<br>`)
+      //   }
+      //   res.write(`<br><br><br>`);
+      // }
+      // res.write(`</div></main></body></html>`)
+      // res.end();
+      console.log(data)
+      res.render('analysis', { data })
     })
     .catch((e) => {
       console.log(e);

@@ -28,30 +28,24 @@ body {
     font-size: 2.0rem;
 }
 
-.fundamentals-container {
+.stock-info {
     display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.pricing-info {
+    display: flex;
+    margin-right: 25px;
     align-items: center;
-    font-size: 0.9rem;
-    margin-top: 15px;
-    margin-bottom: 0;
-    padding-bottom: 0;
 }
 
-.first-fundamental {
-    border-right: 1px solid grey;
-    flex-grow: 2;
-    text-align: center;
+.fundamental {
+    margin: 0 10px;
 }
 
-.middle-fundamental {
-    border-right: 1px solid grey;
-    flex-grow: 2;
-    text-align: center;
-}
-
-.end-fundamental {
-    flex-grow: 2;
-    text-align: center;
+.bold-heading {
+    font-weight: bold;
 }
 
 .price-seperator {
@@ -70,4 +64,26 @@ body {
     object-fit: cover;
     object-position: center;
     margin: 10px 0;
+}
+
+.related-company {
+    margin: 50px 0;
+}
+
+.related-co-heading {
+    display: flex;
+    justify-content: space-between;
+}
+
+.related-co-title {
+    display: flex;
+    align-items: center;
+}
+
+.related-symbol {
+    margin-left: 15px;
+}
+
+.related-news {
+    margin-top: 10px;
 }
