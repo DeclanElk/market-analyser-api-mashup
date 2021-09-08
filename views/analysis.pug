@@ -6,17 +6,20 @@ block content
 			.stock-header
 				h2.display-4.stock-name #{data.symbols[0]}
 				.price-header
-					h2.display-4.stock-price $#{data.prices[0].c}
-						span.badge.badge-success.stock-change #{data.prices[0].dp.toFixed(2)}% &#9650;
+					h2.display-4.stock-price $#{data.prices[0].c.toFixed(2)}
+						if data.prices[0].dp > 0
+							span.badge.badge-success.stock-change #{data.prices[0].dp.toFixed(2)}% &#9650;
+						else
+							span.badge.badge-danger.stock-change #{data.prices[0].dp.toFixed(2)}% &#9660;
 			.stock-info
 				h2 Company Title Here 
 				.pricing-info
 					p.fundamental
 						span.bold-heading Open Price:
-						|  $#{data.prices[0].o}
+						|  $#{data.prices[0].o.toFixed(2)}
 					p.fundamental
 						span.bold-heading Daily Change:
-						|  $#{data.prices[0].d}
+						|  $#{data.prices[0].d.toFixed(2)}
 			hr.price-seperator
 		.container
 			.row
