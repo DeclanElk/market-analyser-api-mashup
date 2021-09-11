@@ -11,5 +11,5 @@ function homeSearch() {
 //Push users to a clicked related stock
 function pushStock(symbol) {
     //Set window location to clicked stock's page
-    window.location.href = symbol;
+    window.location.pathname = 'search/' + symbol
 }
