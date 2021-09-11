@@ -26,7 +26,10 @@ block content
 				each val in data.news[0]
 					.news-article
 						h5.news-heading #{val.headline}
-						img.news-img(src=val.image)
+						if val.image !== ""
+							img.news-img(src=val.image)
+						else
+							img.news-img(src="/images/FinnhubLogo.png")
 						p #{val.summary}
 						p
 							a.btn.btn-secondary(href=val.url role="button") View the story &raquo;
