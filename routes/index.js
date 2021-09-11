@@ -1,5 +1,4 @@
 const express = require('express');
-const createHtml = require('../public/javascripts/createBaseHtml');
 const router = express.Router();
 
 /* GET home page. */

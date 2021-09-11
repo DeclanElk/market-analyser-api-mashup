@@ -3,7 +3,6 @@ const createError = require('http-errors');
 const axios = require('axios');
 const { DateTime } = require("luxon");
 require('dotenv').config();
-const createHtml = require('../public/javascripts/createBaseHtml');
 
 const router = express.Router();
 

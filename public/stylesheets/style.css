@@ -1,100 +1,111 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    font-family: Roboto, Helvetica, sans-serif;
-}
-
+/* Move down content because we have a fixed navbar that is 3.5rem tall */
 body {
-    background-color: #f0f0f0;
+    padding-top: 3.5rem;
 }
 
-nav {
-    background-color: #222222;
+.stock-header {
     display: flex;
-    height: 64px;
-}
-
-nav h3 {
-    color: #e0e0e0;
-    padding: 15px 25px;
-    font-size: 24px;
-    display: inline-block;
-    margin-right: 25px;
-}
-
-nav p a {
-    color: #e0e0e0;
-    display: inline-block;
-    transition: 0.5s;
-    text-decoration: none;
-    margin-top: 22px;
-}
-
-nav p a:hover {
-    color: #c4c4c4;
-    transition: 0.5s
-}
-
-nav #home-buttons {
-    display: flex;
-    width: 400px;
-}
-
-nav form {
-    flex-grow: 1;
-    display: flex;
-    justify-content: end;
     align-items: center;
 }
 
-nav form input {
-    font-size: 18px;
-    color: #222222;
-    height: 32px;
-    border-radius: 10px;
-    border: 0;
-    padding-left: 10px;
-    width: 35%;
-    margin-right: 15px;
+.price-header {
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
+    align-items: center;
 }
 
-nav form button {
-    height: 32px;
-    width: 86px;
-    border-radius: 10px;
-    background-color: #3944bc;
-    color: #f0f0f0;
-    border: 0px;
-    font-size: 18px;
-    margin-right: 50px;
+.stock-name {
+    flex-grow: 2;
 }
 
-#content-container {
-    width: 60%;
-    min-width: 1000px;
-    margin: 0 auto;
+.stock-price, .stock-change {
+    font-size: 3.0rem;
+    margin: 0 12.5px;
 }
 
-h1 {
-    font-size: 40px;
-    margin: 50px 0 10px 50px;
-    color: #222222;
+.stock-change {
+    font-size: 2.0rem;
 }
 
-main h3 {
-    font-size: 25px;
-    margin: 20px 0 10px 50px;
-    font-weight: normal;
+.stock-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
 }
 
-h5 {
-    font-size: 18px;
-    font-weight: normal;
-    margin: 10px 0 50px 50px;
+.pricing-info {
+    display: flex;
+    margin-right: 25px;
+    align-items: center;
 }
 
-main p{
-    margin: 10px 250px 10px 50px;
+.fundamental {
+    margin: 0 10px;
+}
+
+.bold-heading {
+    font-weight: bold;
+}
+
+.price-seperator {
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+.news-article {
+    max-width: 18%;
+    margin-right: 2%;
+}
+
+.news-heading {
+    height: 73px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.news-img {
+    width: 100%;
+    height: 125px;
+    object-fit: cover;
+    object-position: center;
+    margin: 10px 0;
+}
+
+.related-company {
+    margin: 50px 0;
+}
+
+.related-co-heading {
+    display: flex;
+    justify-content: space-between;
+}
+
+.related-co-title {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.related-symbol {
+    margin-left: 15px;
+}
+
+.related-news {
+    margin-top: 10px;
+}
+
+.related-news-heading {
+    height: 55px;
+    margin-bottom: 2px;
+    overflow: hidden;
+}
+
+.error-header {
+    margin-top: 50px;
+    margin-bottom: 0;
+}
+
+.error-badge {
+    margin-left: 50px;
 }
