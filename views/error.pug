@@ -1,6 +1,8 @@
 extends layout
 
 block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+  .jumbotron
+        .container
+            h2.display-4 #{message}
+              span.badge.badge-danger.stock-change.error-badge #{code}
+            h4.display-6.error-header Sorry for the inconvenience, please try again later or return to the home page.
