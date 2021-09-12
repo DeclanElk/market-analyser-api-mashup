@@ -46,7 +46,12 @@ router.get('/:symbol', function(req, res, next) {
       return Promise.all(promises);
     })
     .then((prices) => {
-      data.prices = prices.map(response => response.data);
+      data.prices = prices.map(response => {
+        if (response.data.c === 0 || response.data.d === null || response.data.dp === null || response.data.o === 0) {
+          throw new Error('500 Price API failure.');
+        }
+        return response.data
+      });
       let promises = [];
       for (let i = 0; i < data.symbols.length; i++) {
         const symbol = data.symbols[i];
@@ -75,6 +80,9 @@ router.get('/:symbol', function(req, res, next) {
     .catch((error) => {
       if (error.toString().includes('Stock not found.')) {
         next(createError(404, 'Error! Stock not found.'));
+      }
+      else if (error.toString().includes('Price API failure.')) {
+        next(createError(500, 'Error! Service provider API failure.'))
       }
       else if (error.response !== undefined && error.response.data.error.includes('API limit reached')) {
         next(createError(429, 'Error! The search limit has been reached.'))
