@@ -1,12 +1,14 @@
 extends layout
 
 block content
+	//- Display primary stock's name, price and relevant news stories
 	.jumbotron
 		.container
 			.stock-header
 				h2.display-4.stock-name #{data.symbols[0]}
 				.price-header
 					h2.display-4.stock-price $#{data.prices[0].c.toFixed(2)}
+						//- If the price has increased use a green badge, otherwise use a red badge.
 						if data.prices[0].dp > 0
 							span.badge.badge-success.stock-change #{data.prices[0].dp.toFixed(2)}% &#9650;
 						else
@@ -23,10 +25,14 @@ block content
 			hr.price-seperator
 		.container
 			.row
+				//- If the API has found relevant news stories, loop through the array 
+					and display them all in individual cards
 				if data.news[0].length > 0
 					each article in data.news[0]
 						.news-article
 							h5.news-heading #{article.headline}
+							//- If the article has a thumbnail image, use it, otherwise use the 
+								default Finnhub logo image within the public/images directory
 							if article.image !== ""
 								img.news-img(src=article.image)
 							else
@@ -34,15 +40,19 @@ block content
 							p #{article.summary}
 							p
 								a.btn.btn-secondary(href=article.url role="button") View the story &raquo;
+				//- Else, display that no news stories were found
 				else
 					h5.error-text.error-message-title No recent news articles found.
 	.container
 		h3 Industry Outlook - Related Companies
+		//- Extract related company data into variables here for cleaner looping below
 		- var symbols = data.symbols.slice(1);
 		- var names = data.names.slice(1);
 		- var prices = data.prices.slice(1);
 		- var news = data.news.slice(1);
 		- var iterator = 0;
+		//- If the API has found related comapnies, loop through the array and
+			display them each here
 		if symbols.length !== 0
 			while (iterator < symbols.length)
 				- var pushFunctionString = `pushStock("` + symbols[iterator] + `")`;
@@ -53,6 +63,7 @@ block content
 							h6.related-symbol #{symbols[iterator]}
 						.related-co-price
 							h4 $#{prices[iterator].c.toFixed(2)} 
+								//- Again, if the price change is positive, display green, else red.
 								if prices[iterator].dp > 0
 									span.badge.badge-success.related-stock-change #{prices[iterator].dp.toFixed(2)}% &#9650;
 								else
@@ -61,6 +72,8 @@ block content
 					.related-news
 						.container
 							.row
+								//- If the API has found relevant news for this company, loop through the array and
+									display them each here
 								if news[iterator].length > 0
 									each article in news[iterator]
 										.news-article
@@ -71,8 +84,10 @@ block content
 												img.news-img(src="/images/FinnhubLogo.png")
 											p
 												a.btn.btn-secondary(href=article.url role="button") View the story &raquo;
+								//- Else, display an error that no related news stories were found
 								else
 									h6.error-text No recent news articles found.
 				- var iterator = iterator + 1;
+		//- Else, display an error that no related companies were found
 		else
 			h5.error-text.error-related-companies No related companies found.

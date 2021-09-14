@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-/* GET home page. */
+/* Render home/documentation pug template on site's root directory */
 router.get('/', function(req, res, next) {
   res.render('index')
 });

@@ -1,8 +1,10 @@
-/* Move down content because we have a fixed navbar that is 3.5rem tall */
+/* Custom style sheet used in addition to Bootstrap stylesheet */
+
 body {
     padding-top: 3.5rem;
 }
 
+/* Header stock styling */
 .stock-header {
     display: flex;
     align-items: center;
@@ -19,13 +21,14 @@ body {
     flex-grow: 2;
 }
 
-.stock-price, .stock-change {
-    font-size: 3.0rem;
+.stock-price,
+.stock-change {
+    font-size: 3rem;
     margin: 0 12.5px;
 }
 
 .stock-change {
-    font-size: 2.0rem;
+    font-size: 2rem;
 }
 
 .stock-info {
@@ -53,6 +56,7 @@ body {
     padding-top: 0px;
 }
 
+/* Header stock news styling */
 .news-article {
     max-width: 18%;
     margin-right: 2%;
@@ -72,6 +76,7 @@ body {
     margin: 10px 0;
 }
 
+/* Related stock styling */
 .related-company {
     margin: 50px 0;
 }
@@ -91,6 +96,7 @@ body {
     margin-left: 15px;
 }
 
+/* Related stock news styling */
 .related-news {
     margin-top: 10px;
 }
@@ -101,6 +107,7 @@ body {
     overflow: hidden;
 }
 
+/* Error message handling */
 .error-header {
     margin-top: 50px;
     margin-bottom: 0;

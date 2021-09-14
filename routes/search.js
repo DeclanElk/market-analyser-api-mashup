@@ -6,22 +6,29 @@ require('dotenv').config();
 
 const router = express.Router();
 
-/* GET symbol */
+/* Render stock analysis on /search/(symbol) path */
 router.get('/:symbol', function(req, res, next) {
+  //Data object that will be progressively filled in the promise chain
   let data = {
     symbols: null,
     names: null,
     prices: null,
     news: null
   }
+  /* First, fetch a list of stocks related to the company that was 
+  searched for, and store the top 4 + the original stock to the data object */
   const peersUrl = peersApiPath(req.params.symbol);
   axios.get(peersUrl)
     .then((response) => { 
-      let symbols = response.data.filter(symbol => !symbol.includes('.') && symbol !== req.params.symbol.toUpperCase());
+      //Filter out known bad stock symbols
+      let symbols = response.data.filter(symbol => {
+        return !symbol.includes('.') && symbol !== req.params.symbol.toUpperCase()
+      });
       symbols = symbols.slice(0,4)
       symbols.unshift(req.params.symbol.toUpperCase());
       return symbols
     })
+    //Then, fetch the actual names of each stock and store this in the data object 
     .then((symbols) => {
       data.symbols = symbols;
       let promises = [];
@@ -32,6 +39,8 @@ router.get('/:symbol', function(req, res, next) {
       }
       return Promise.all(promises);
     })
+    /* Next, fetch the current pricing data of each stock, after confirming
+    the searched stock does actually exist. */
     .then((names) => {
       data.names = names.map(response => response.data.name);
       if (data.names[0] === undefined) {
@@ -45,9 +54,12 @@ router.get('/:symbol', function(req, res, next) {
       }
       return Promise.all(promises);
     })
+    /* Handle any errors that may arise with the pricing data, then finally
+    fetch a set of recent news stories about each stock. */
     .then((prices) => {
       data.prices = prices.map(response => {
-        if (response.data.c === 0 || response.data.d === null || response.data.dp === null || response.data.o === 0) {
+        if (response.data.c === 0 || response.data.d === null ||
+          response.data.dp === null || response.data.o === 0) {
           throw new Error('500 Price API failure.');
         }
         return response.data
@@ -60,6 +72,8 @@ router.get('/:symbol', function(req, res, next) {
       }
       return Promise.all(promises);
     })
+    /* Extract the required details of each news story, and crop the
+    headlines and summaries to a reasonable length */
     .then((news) => {
       data.news = news.map(response => {
         return response.data.slice(0,5)
@@ -75,8 +89,11 @@ router.get('/:symbol', function(req, res, next) {
           }
         }
       }
+      //Pass the complete data array through to our pug template and render the page.
       res.render('analysis', { data })
     })
+    /* Provide specific error messages & codes for known encounterable errors, 
+    otherwise send a generic 500 internal server error message. */
     .catch((error) => {
       if (error.toString().includes('Stock not found.')) {
         next(createError(404, 'Error! Stock not found.'));
@@ -84,7 +101,8 @@ router.get('/:symbol', function(req, res, next) {
       else if (error.toString().includes('Price API failure.')) {
         next(createError(500, 'Error! Service provider API failure.'))
       }
-      else if (error.response !== undefined && error.response.data.error.includes('API limit reached')) {
+      else if (error.response !== undefined && 
+        error.response.data.error.includes('API limit reached')) {
         next(createError(429, 'Error! The search limit has been reached.'))
       }
       else {
@@ -93,32 +111,34 @@ router.get('/:symbol', function(req, res, next) {
     })
 });
 
+
+//API Helper functions - finnhub api token retrieved from .env file.
+
+//Retrieve the API path to fetch a stock's related companies
 function peersApiPath(symbol) {
-  //Retrieve API key from .env file and return complete URL
   const token = process.env.FINNHUB_TOKEN;
   const url = `https://finnhub.io/api/v1/stock/peers?symbol=${symbol}&token=${token}`;
   return url;
 }
 
+//Retrieve the API path to fetch a stock's name
 function nameApiPath(symbol) {
-  //Retrieve API key from .env file and return complete URL
   const token = process.env.FINNHUB_TOKEN;
   const url = `https://finnhub.io/api/v1/stock/profile2?symbol=${symbol}&token=${token}`;
   return url;
 }
 
-
+//Retrieve the API path to fetch a stock's price data
 function priceApiPath(symbol) {
-  //Retrieve API key from .env file and return complete URL
   const token = process.env.FINNHUB_TOKEN;
   const url = `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${token}`;
   return url;
 }
 
+//Retrieve the API path to fetch recent news about a stock
 function newsApiPath(symbol) {
-  //Retrieve API key from .env file and return complete URL
   const token = process.env.FINNHUB_TOKEN;
-  //TODO come back and fix these dates lol
+  //Date range of news articles is hard-coded to the past 7-days.
   const toDate = DateTime.now().toISODate();
   const fromDate = DateTime.now().minus({days: 7}).toISODate();
   const url = `https://finnhub.io/api/v1/company-news?symbol=${symbol}&from=${fromDate}&to=${toDate}&token=${token}`;

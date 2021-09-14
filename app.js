@@ -9,31 +9,33 @@ const searchRouter = require('./routes/search');
 
 const app = express();
 
-// view engine setup
+// Set up Pug view engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+//Stock express-generator middleware
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Link our index router and search router to their respective paths
 app.use('/', indexRouter);
 app.use('/search', searchRouter);
 
-// catch 404 and forward to error handler
+//Catch 404 errors
 app.use(function(req, res, next) {
   next(createError(404, 'Error! Page not found.'));
 });
 
-// error handler
+//Handle errors created by https-errors' createError function
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
+  //Set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
+  //Render the error page
   res.status(err.status || 500);
   res.render('error', {code: err.status || 500, message: err.message || "Unknown Error."});
 });
