@@ -109,3 +109,15 @@ body {
 .error-badge {
     margin-left: 50px;
 }
+
+.error-text {
+    color: #ba1321;
+}
+
+.error-message-title {
+    margin-left: 15px;
+}
+
+.error-related-companies {
+    margin-top: 25px;
+}
