@@ -5,10 +5,10 @@ block content
         .container
             h2.display-4 Welcome to the Market Analyser
             p This tool allows users to view the current share price and relevent news articles of public U.S. companies, as well as that of similar companies in their industry in order to provide an outlook on the whole market sector.
-            p To get started, simply search for a company's ticker symbol (e.g. Apple Inc's symbol is 'AAPL') using the search bar below. Once viewing a stock, you can run another search by using the search button in the top right of the page, or return back here using the home button.
+            p To get started, simply search for a company's ticker symbol (e.g. Apple Inc's symbol is 'AAPL') using the search bar below. Once viewing a stock, you can run another search by using the search button in the top right of the page, or return home using the button in the top left.
             p Happy Trading! 
             form.form-inline.my-2.my-lg-0(onsubmit="return false;")
-                input.form-control.mr-sm-2#searchHome(style="width: 85%" type="text" placeholder="Search a stock symbol (e.g., 'AAPl', 'AMZN', 'MSFT')")
+                input.form-control.mr-sm-2#searchHome(style="width: 85%" type="text" placeholder="Search a stock symbol (e.g., 'AAPL', 'AMZN', 'MSFT')")
                 button.btn.btn-outline-success.my-2.my-sm-0(type="submit" onclick="homeSearch()") Search
     .container
         .row
