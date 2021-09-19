@@ -92,6 +92,14 @@ body {
     cursor: pointer;
 }
 
+.related-full-name {
+    border-bottom: 1px solid white;
+}
+
+.related-full-name:hover {
+    border-bottom: 1px solid black;
+}
+
 .related-symbol {
     margin-left: 15px;
 }
