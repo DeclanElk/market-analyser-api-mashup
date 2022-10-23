@@ -6,4 +6,4 @@ In this case, the application provides US stock market information in the form o
 ## Running the application
 To run this application, clone the repository and install the dependencies using `npm install`, then run the application using `npm start` - you can now access the site on `http://localhost:3000` within your browser. 
 
-**Note:** Please ensure a suitable environment variable named FINNHUB_TOKEN exists containing a production Finnhub.io API token, or the searching functionality of the application will not work.
+**Note:** Please ensure a suitable environment variable named FINNHUB_TOKEN exists containing a production Finnhub.io API token, or the searching functionality of the application will not work. The frequency with which you can search using the application depends on the subscription level of your Finnhub account, with the free tier allowing for 3 searches per minute.
