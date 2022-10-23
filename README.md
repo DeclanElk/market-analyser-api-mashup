@@ -1,5 +1,5 @@
 # Market Analyser
-This is a Node.JS API mashup application developer for a cloud computing university class. The goal of the application was to chain multiple APIs together to provide a richer experience than any single API can provide alone.
+This is a Node.JS API mashup application developed for a cloud computing university class. The goal of the application was to chain multiple APIs together to provide a richer experience than any single API can provide alone.
 
 In this case, the application provides US stock market information in the form of stock pricing and recent company news from the [Finnhub API](https://finnhub.io/). You are able to search for a particular stock based on its ticker code and view its daily price movement along with up to 5 recent relevant news articles, as well as the price and recent news of similar related stocks.
 
