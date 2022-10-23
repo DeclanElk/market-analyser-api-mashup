@@ -3,6 +3,8 @@ This is a Node.JS API mashup application developed for a cloud computing univers
 
 In this case, the application provides US stock market information in the form of stock pricing and recent company news from the [Finnhub API](https://finnhub.io/). You are able to search for a particular stock based on its ticker code and view its daily price movement along with up to 5 recent relevant news articles, as well as the price and recent news of similar related stocks.
 
+The application runs within Node.JS using an Express server and renders the HTML responses using Pug templates.
+
 ## Running the application
 To run this application, clone the repository and install the dependencies using `npm install`, then run the application using `npm start` - you can now access the site on `http://localhost:3000` within your browser. 
 
